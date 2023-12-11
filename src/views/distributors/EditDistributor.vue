@@ -1,7 +1,8 @@
 <template>
     <section>
         <h1>Editar Distribuidor</h1>
-        <br><br>
+        <br>
+        <br>
         <UpdateForm
         path="distributors"
         is-distributor-form

@@ -14,7 +14,6 @@
                 <template v-slot:content>
                     verifique os detalhes de um distribuidor no banco de dados, este card te levara a uma aba de pesquisa onde você ira inserir o id do distribuidor que deseja verificar
                 </template>
-            
                 <template v-slot:text-button><router-link to="/distributors/search" class="links">Ir</router-link></template>
             </BaseCard>
             
@@ -35,6 +34,7 @@
                 <template v-slot:text-button><router-link to="/distributors/search" class="links">Ir</router-link></template>
             </BaseCard>
         </section>
+
         <aside>
             <br>
             <h1>Lista de distribuidores</h1>
@@ -57,6 +57,7 @@ import apiClient from '../../helpers/axios';
 
 let itemDistributors = ref([])
 
+    // requisição para pegar os distribuidores 
     apiClient.get('distributors/',{
         }).then(function (response){
             itemDistributors.value = []

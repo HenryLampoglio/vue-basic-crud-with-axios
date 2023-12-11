@@ -6,9 +6,7 @@
             <template v-slot:content>
                 Atalho para adicionar um novo produto ao banco de dados da empresa, você pode verificar as demais funções envolvendo produtos na aba produtos 
             </template>
-            <template v-slot:text-button>
-                <router-link to="products/create" class="links">Adicionar</router-link>
-            </template>
+            <template v-slot:text-button><router-link to="products/create" class="links">Adicionar</router-link></template>
         </BaseCard>
 
         <BaseCard>
@@ -44,7 +42,6 @@
 </script>
 
 <style scoped>
-
  main{
     min-height: calc(100vh - 80px);
     width: 100%;
@@ -75,6 +72,4 @@
         grid-template-columns: 350px;
     }
  }
-
-
 </style>

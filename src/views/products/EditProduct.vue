@@ -1,7 +1,8 @@
 <template>
     <section>
         <h1>Editar produto</h1>
-        <br><br>
+        <br>
+        <br>
         <UpdateForm
         is-product-form
         path="products"

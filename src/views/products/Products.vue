@@ -16,9 +16,7 @@
                 <template v-slot:content>
                     adicione um novo produto ao banco de dados da empresa, este card te levara a um formulario onde você pode preencher as informações de um novo produto 
                 </template>
-                <template v-slot:text-button>
-                    <router-link to="/products/create" class="links">Adicionar</router-link>
-                </template>
+                <template v-slot:text-button><router-link to="/products/create" class="links">Adicionar</router-link></template>
             </BaseCard>
 
             <BaseCard>
@@ -27,9 +25,7 @@
                     verifique os detalhes de um produto no banco de dados, este card te levara a uma aba de pesquisa onde você ira inserir o id do produto que deseja verificar
                 </template>
             
-                <template v-slot:text-button>
-                    <router-link to="/products/search" class="links">IR</router-link>
-                </template>
+                <template v-slot:text-button><router-link to="/products/search" class="links">IR</router-link></template>
             </BaseCard>
             
             <BaseCard>
@@ -42,17 +38,12 @@
                 </template>
             </BaseCard>
             
-
             <BaseCard>
                 <template v-slot:title >Exclua um produto</template>
                 <template v-slot:content>
                     Exclua um produto do banco de dados, este card te levara a uma aba de pesquisa para inserir o id do produto que deseja excluir do banco de dados
                 </template>
-                <template v-slot:text-button>
-                    <router-link to="/products/search" class="links">
-                       IR
-                    </router-link>   
-                </template>
+                <template v-slot:text-button><router-link to="/products/search" class="links">IR</router-link></template>
             </BaseCard>
         </section>     
     </main>
@@ -66,13 +57,13 @@
 
     let itemProducts = ref([])
 
+    //requisião para pegar todos produtos
     apiClient.get('products/',{
-        }).then(function (response){
+        }).then(function (response)
+        {
             itemProducts.value = []
             itemProducts = response.data
         })
-
-
 </script>
 
 <style scoped>
@@ -121,11 +112,9 @@
         main{
             flex-direction: column;
         }
-
         aside{
             width: 100%;
         }
-
         .cards{
             width: 100%;
             margin-bottom: 30px;
@@ -139,12 +128,9 @@
     }
 
     @media(max-width: 800px){
-
-
         .cards{
             grid-template-columns: 380px;
             margin-bottom: 30px;
         }
     }
-
 </style>

@@ -1,22 +1,16 @@
 <template>
     <section>
         <h1>Crie o distribuidor</h1>
-        <br><br>
+        <br>
+        <br>
         <CreateForm
         path="distributors" 
         isDistributorForm/>
-
     </section>
 </template>
 
 <script setup>
 import CreateForm from '../../components/forms/CreateForm.vue';
-
-
-
-
-
-
 </script>
 
 <style scoped>

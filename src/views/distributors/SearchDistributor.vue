@@ -15,7 +15,6 @@ import SearchComponent from '../../components/SearchComponent.vue';
 </script>
 
 <style scoped>
-
     main{
     min-height: 100vh;
     max-width: 100%;
@@ -24,6 +23,4 @@ import SearchComponent from '../../components/SearchComponent.vue';
     flex-direction: column;
     align-items: center;
     }
-
-
 </style>

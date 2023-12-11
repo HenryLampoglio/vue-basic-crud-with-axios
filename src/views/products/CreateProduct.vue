@@ -1,7 +1,8 @@
 <template>
     <section>
         <h1>Crie o produto</h1>
-        <br><br>
+        <br>
+        <br>
         <CreateForm 
         path="products"
         isProductForm/>
