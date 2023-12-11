@@ -36,6 +36,7 @@
             </BaseCard>
         </section>
         <aside>
+            <br>
             <h1>Lista de distribuidores</h1>
             <DinamicTable 
             :items="itemDistributors"
@@ -83,7 +84,7 @@ let itemDistributors = ref([])
         display: grid;
         grid-template-columns: 400px 400px;
         column-gap: 80px;
-        row-gap: 80px;
+        row-gap: 40px;
         justify-content: center;
         padding-top: 100px;
     }

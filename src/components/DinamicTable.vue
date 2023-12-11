@@ -6,7 +6,7 @@
         :sortOrder="1" 
         removableSort
         size="small"
-        tableStyle="min-width: 50rem">
+        >
             <Column field="id" header="Código" style="text-align: center;"></Column>
             <Column :field="field1" :header="header1" sortable style="text-align: center;"></Column>
             <Column :field="field2" :header="header2" style="text-align: center;"></Column>
@@ -36,7 +36,7 @@ defineProps({
 
 .p-datatable{
     margin-top: 50px;
-    position: fixed;
+    width: 95%;
 }
 
 .p-datatable .p-column-header-content{

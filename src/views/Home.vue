@@ -48,10 +48,10 @@
  main{
     min-height: calc(100vh - 80px);
     width: 100%;
-    padding-top: 50px;
+    padding: 50px 0px;
     display: grid;
     grid-template-columns: 400px 400px;
-    column-gap: 100px;
+    column-gap: 80px;
     row-gap: 20px;
     justify-content: center;
     background-color: whitesmoke;
@@ -61,5 +61,20 @@
     text-decoration: none;
     color: black;
  }
+
+ @media(max-width: 1150px){
+    main{
+        grid-template-columns: 350px 350px;
+        column-gap: 50px;
+        row-gap: 20px;
+    }
+ }
+
+ @media(max-width: 760px){
+    main{
+        grid-template-columns: 350px;
+    }
+ }
+
 
 </style>

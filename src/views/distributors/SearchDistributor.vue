@@ -17,8 +17,8 @@ import SearchComponent from '../../components/SearchComponent.vue';
 <style scoped>
 
     main{
-    min-height: calc(100vh - 80px);
-    width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;

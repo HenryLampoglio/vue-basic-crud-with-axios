@@ -142,16 +142,17 @@ const databaseResponse = () =>
         box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     }
 
-    input{
-        width: 350px;
-        height: 30px;
+    .p-inputtext{
+        width: 100%;
+        height: 35px;
         border-radius: 5px;
         border: 1px solid gray;
         padding: 10px;
     }
     
-    textarea{
+    .p-inputtextarea{
         padding: 10px 12px;
+        height: 10%;
         border-radius: 5px;
         border: 1px solid gray;
         font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -160,5 +161,21 @@ const databaseResponse = () =>
     .p-button{
         border-radius: 10px;
     }
+
+    @media(max-width: 1450px){
+        form{
+            width: 50%;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+    }
+    @media(max-width: 800px){
+        form{
+            width: 90%;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+    }
+
 
 </style>

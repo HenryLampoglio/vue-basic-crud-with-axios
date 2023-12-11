@@ -164,44 +164,21 @@ const databaseResponse = () =>
 </script>
 
 <style scoped>
-    form{
-        width: 30%;
-        background-color: #2c9465dd;
-        display: flex;
-        flex-direction: column;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
-    }
-
-    input{
-        width: 350px;
-        height: 30px;
-        border-radius: 5px;
-        border: 1px solid gray;
-        padding: 10px;
-    }
-    
-    textarea{
-        padding: 10px 12px;
-        border-radius: 5px;
-        border: 1px solid gray;
-        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    }
-
     .search-bar{
-        width: 520px;
-        height: 45px;
+        width: 600px;
+        height: 50px;
         border: 1px grey solid;
         border-radius: 5px;
-        padding: 5px;
+        padding: 5px 0px 5px 20px;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
     }
 
     .search-bar input{
         width: 450px;
         border: none;
-        margin-right: 20px;
+        margin-right: 12%;
     }
 
     .search-bar button{
@@ -214,11 +191,59 @@ const databaseResponse = () =>
         text-align: center;
     }
 
-    .p-button{
-        align-self: center;
-        width: 200px;
-      
-        border: 1px solid gray;
-
+    form{
+        width: 30%;
+        background-color: #2c9465dd;
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
     }
+
+    .p-inputtext{
+        width: 100%;
+        height: 35px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding: 10px;
+    }
+    
+    .p-inputtextarea{
+        padding: 10px 12px;
+        height: 10%;
+        border-radius: 5px;
+        border: 1px solid gray;
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    }
+
+    .p-button{
+        border-radius: 10px;
+    }
+
+    @media(max-width: 1450px){
+        form{
+            width: 50%;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+    }
+    @media(max-width: 800px){
+        form{
+            width: 90%;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .search-bar{
+            width: 95%;
+            height: 50px;
+            padding-left: 40px;
+        }
+
+        .search-bar input{
+            width: 85%;
+            margin-right: 4%;
+        }
+
+        }
 </style>

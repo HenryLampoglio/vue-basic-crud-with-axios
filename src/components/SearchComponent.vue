@@ -171,4 +171,19 @@ let item = ref({})
         margin-bottom: 5px;
     }
 
+    @media(max-width: 500px){
+        .p-card{
+            width: 350px;
+            height: 230px;
+        }
+
+        .p-inputtext{
+            width: 350px;
+        }
+
+        .p-button{
+            width: 250px;
+        }
+    }
+
 </style>
