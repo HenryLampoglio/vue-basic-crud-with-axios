@@ -51,18 +51,25 @@ import Card from 'primevue/card';
     button:active{
        background-color: #247852;
     }
+
+    @media(max-width: 1850px){
+        .p-card{
+            width: 350px;
+            height: 300px;
+        }
+    }
     
         @media(max-width: 1150px){
             .p-card{
                 width: 350px;
-                height: 280px;
+                height: 300px;
             }
         }
 
     @media(max-width: 760px){
         .p-card{
             width: 350px;
-            height: 350px;
+            height: 320px;
         }
         
     }

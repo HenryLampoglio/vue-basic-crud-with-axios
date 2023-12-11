@@ -1,13 +1,14 @@
 <template>
     <main>
         <aside>
+            <br>
             <h1>Lista de produtos</h1>
-            <DinamicTable 
-            :items="itemProducts"
-            field1="name_product"
-            field2="price"
-            header1="Nome do Produto"
-            header2="preço"/>
+                <DinamicTable 
+                :items="itemProducts"
+                field1="name_product"
+                field2="price"
+                header1="Nome do Produto"
+                header2="preço"/>
         </aside>
         <section class="cards">
             <BaseCard>
@@ -80,7 +81,8 @@
     width: 100%;
     background-color: whitesmoke;
     display: flex;
- }
+    }
+
     aside{
         width: 45%;
         display: flex;
@@ -93,7 +95,7 @@
         display: grid;
         grid-template-columns: 400px 400px;
         column-gap: 80px;
-        row-gap: 80px;
+        row-gap: 10px;
         justify-content: center;
         padding-top: 100px;
     }
@@ -103,6 +105,46 @@
         color: black;
        
     }
-    
+
+    .test-table{
+        position: sticky;
+    }
+
+    @media(max-width: 1850px){
+        .cards{
+            column-gap: 10px;
+            margin-left: 15px;
+        }
+    }
+
+    @media(max-width: 1439px){
+        main{
+            flex-direction: column;
+        }
+
+        aside{
+            width: 100%;
+        }
+
+        .cards{
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    }
+
+    @media(max-width: 1150px){
+        .cards{
+            grid-template-columns: 350px 350px;
+        }
+    }
+
+    @media(max-width: 800px){
+
+
+        .cards{
+            grid-template-columns: 380px;
+            margin-bottom: 30px;
+        }
+    }
 
 </style>

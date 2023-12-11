@@ -66,7 +66,7 @@ let itemDistributors = ref([])
 </script>
 
 <style scoped>
-    main{
+     main{
     min-height: calc(100vh - 80px);
     width: 100%;
     background-color: whitesmoke;
@@ -75,8 +75,8 @@ let itemDistributors = ref([])
     aside{
         width: 45%;
         display: flex;
-        align-items: center;
         flex-direction: column;
+        align-items: center;
     }
 
     .cards{
@@ -84,7 +84,7 @@ let itemDistributors = ref([])
         display: grid;
         grid-template-columns: 400px 400px;
         column-gap: 80px;
-        row-gap: 40px;
+        row-gap: 10px;
         justify-content: center;
         padding-top: 100px;
     }
@@ -92,5 +92,44 @@ let itemDistributors = ref([])
     .links{
         text-decoration: none;
         color: black;
+       
     }
+
+    @media(max-width: 1850px){
+        .cards{
+            column-gap: 10px;
+            margin-left: 15px;
+        }
+    }
+
+    @media(max-width: 1439px){
+        main{
+            flex-direction: column-reverse;
+        }
+
+        aside{
+            width: 100%;
+        }
+
+        .cards{
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    }
+
+    @media(max-width: 1150px){
+        .cards{
+            grid-template-columns: 350px 350px;
+        }
+    }
+
+    @media(max-width: 800px){
+
+
+        .cards{
+            grid-template-columns: 380px;
+            margin-bottom: 30px;
+        }
+    }
+    
 </style>

@@ -221,7 +221,7 @@ const databaseResponse = () =>
         border-radius: 10px;
     }
 
-    @media(max-width: 1450px){
+    @media(max-width: 1150px){
         form{
             width: 50%;
             padding-bottom: 10px;
@@ -245,5 +245,5 @@ const databaseResponse = () =>
             margin-right: 4%;
         }
 
-        }
+    }
 </style>
