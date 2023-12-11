@@ -22,14 +22,12 @@ defineProps({
         header2: String,
         field1: String,
         field2: String,
-        items: {
+        items: 
+        {
             type: Array,
             required: true
         },
     })
-    
-
-
 </script>
 
 <style >

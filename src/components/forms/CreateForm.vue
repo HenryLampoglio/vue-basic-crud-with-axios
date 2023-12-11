@@ -21,7 +21,7 @@
         </label>
         <br>
         <label for="textArea"> Descrição do produto </label>
-        <TextArea id="textArea" cols="30" rows="10" v-model="product.description" />
+            <TextArea id="textArea" cols="30" rows="10" v-model="product.description" />
         <br>
         <label> Código do distribuidor <br>
             <InputText type="text" required v-model="product.distributor_id" maxlength="36"/>
@@ -32,11 +32,11 @@
 
     <form v-else-if="isDistributorForm" @submit.prevent="databaseResponse()">
         <label>Nome da empresa<br> 
-        <InputText type="text" required v-model="distributor.company_name" />
+            <InputText type="text" required v-model="distributor.company_name" />
         </label>
         <br>
         <label>Endereço da empresa<br> 
-        <InputText type="text" required v-model="distributor.adress" />
+            <InputText type="text" required v-model="distributor.adress" />
         </label>
         <br>
         <label for="textArea"> Descrição da empresa </label>
@@ -75,12 +75,15 @@ let distributor = ref({
     description: '',
 })
 
+
+// props passado do componente pai
 const props = defineProps({
     path: String,
     isProductForm: Boolean,
     isDistributorForm: Boolean,
 })
 
+// função para fechar o modal
 const onCloseModal = () =>
 {
     modalOpen.value = false
@@ -89,45 +92,52 @@ const onCloseModal = () =>
 
 // função para enviar os dados ao banco
 const databaseResponse = () =>
-{
-    if(props.isDistributorForm){
+{   
+    // verifica se a requisiação foi feito por um componente da aba de distribuidor ou de produto
+    if(props.isDistributorForm)
+    {
         apiClient.post(`${props.path}`,distributor.value
-        ).then(function (response){
+        ).then(function (response)
+        {
             modalIf.value = 'success'
             modalTitle.value = 'SUCESSO'
             modalText.value = 'Distribuidor criado com sucesso'
             modalOpen.value = true
+
             distributor.value.company_name = ''
             distributor.value.adress = ''
             distributor.value.description = ''
-        }).catch(function(error){
+        }).catch(function(error)
+        {
             console.log(error)
             modalIf.value =  'failed'
             modalTitle.value =  'ERRO'
             modalText.value =  'Erro ao criar um distribuidor, verifique se ja não existe no sistema'
             modalOpen.value =  true
         })
-    }else if(props.isProductForm){
+    }else if(props.isProductForm)
+    {
         apiClient.post(`${props.path}`,product.value
-        ).then(function (response){
+        ).then(function (response)
+        {
             modalIf.value = 'success'
             modalTitle.value = 'SUCESSO'
             modalText.value = 'Produto criado com sucesso'
             modalOpen.value = true
+
             product.value.name_product = ''
             product.value.price = ''
             product.value.description = ''
             product.value.distributor_id = ''
-        }).catch(function(error){
+        }).catch(function(error)
+        {
             modalIf.value ='failed'
             modalTitle.value ='ERRO'
             modalText.value = 'Erro ao criar produto, verifique se ja não existe no sistema'
             modalOpen.value =true
         })
-
     }
 }
-
 
 </script>
 
@@ -176,6 +186,4 @@ const databaseResponse = () =>
             margin-bottom: 15px;
         }
     }
-
-
 </style>

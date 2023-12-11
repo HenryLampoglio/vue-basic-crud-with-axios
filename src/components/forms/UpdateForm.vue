@@ -23,7 +23,7 @@
         </label>
         <br>
         <label for="textArea"> Descrição do produto </label>
-        <TextArea id="textArea" cols="30" rows="10" v-model="product.description" />
+            <TextArea id="textArea" cols="30" rows="10" v-model="product.description" />
         <br>
         <label> Código do distribuidor <br>
             <InputText type="text" required v-model="product.distributor_id" maxlength="36"/>
@@ -81,6 +81,8 @@ let distributor = ref({
     description: '',
 })
 
+
+// props passado pelo componente pai
 const props = defineProps({
     path: String,
     isProductForm: Boolean,
@@ -88,30 +90,37 @@ const props = defineProps({
     placeHolderText: String,
 })
 
+// função para fechar o modal
 const onCloseModal = () =>
 {
     modalOpen.value = false
     return modalOpen
 }
 
-// função para enviar os dados ao banco
-
+// função para receber os dados do banco para edita-los
 const searchItem = () =>{
-        if(props.isDistributorForm){
+        // verifica se a requisiação foi feito por um componente da aba de distribuidor ou de produto
+        if(props.isDistributorForm)
+        {
             apiClient.get(`${props.path}/{distributor_id}?ditributor_id=${idValue.value}`
-        ).then(function (response){        
+        ).then(function (response)
+        {        
                 distributor.value = response.data                
-            }).catch(function (error){
+            }).catch(function (error)
+            {
                     modalIf.value = 'failed'
                     modalTitle.value = 'Distribuidor não encontrado'
                     modalText.value = 'O Distribuidor não foi encontrado no sistema verifique se foi inserido o id correto'
                     modalOpen.value = true
             })
-        }else if(props.isProductForm){
+        }else if(props.isProductForm)
+        {
             apiClient.get(`${props.path}/${idValue.value}`
-            ).then(function (response){        
+            ).then(function (response)
+            {        
                 product.value = response.data                
-            }).catch(function (error){
+            }).catch(function (error)
+            {
                     modalIf.value = 'failed'
                     modalTitle.value = 'Produto não encontrado'
                     modalText.value = 'O produto não foi encontrado no sistema verifique se foi inserido o id correto'
@@ -120,37 +129,47 @@ const searchItem = () =>{
         }
     }
 
+
+// função para enviar os dados alterados ao banco
 const databaseResponse = () =>
 {
-    if(props.isDistributorForm){
+    if(props.isDistributorForm)
+    {
         apiClient.put(`${props.path}/${idValue.value}`,distributor.value
-        ).then(function (response){
+        ).then(function (response)
+        {
             modalIf.value = 'success'
             modalTitle.value = 'SUCESSO'
             modalText.value = 'Distribuidor criado com sucesso'
             modalOpen.value = true
+            
             distributor.value.company_name = ''
             distributor.value.adress = ''
             distributor.value.description = ''
-        }).catch(function(error){
+        }).catch(function(error)
+        {
             console.log(error)
             modalIf.value =  'failed'
             modalTitle.value =  'ERRO'
             modalText.value =  'Erro ao criar um distribuidor, verifique se ja não existe no sistema'
             modalOpen.value =  true
         })
-    }else if(props.isProductForm){
+    }else if(props.isProductForm)
+    {
         apiClient.put(`${props.path}/${idValue.value}`,product.value
-        ).then(function (response){
+        ).then(function (response)
+        {
             modalIf.value = 'success'
             modalTitle.value = 'SUCESSO'
             modalText.value = 'Produto criado com sucesso'
             modalOpen.value = true
+
             product.value.name_product = ''
             product.value.price = ''
             product.value.description = ''
             product.value.distributor_id = ''
-        }).catch(function(error){
+        }).catch(function(error)
+        {
             modalIf.value ='failed'
             modalTitle.value ='ERRO'
             modalText.value = 'Erro ao criar produto, verifique se ja não existe no sistema'

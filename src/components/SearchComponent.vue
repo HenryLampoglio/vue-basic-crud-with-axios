@@ -67,14 +67,18 @@ let item = ref({})
     const showItem = () =>
     {
         // verifica se valor passado tenho tamanho padrão de um id
-        if(idValue.value.length == 36){
-            if(props.isProduct){
+        if(idValue.value.length == 36)
+        {
+            if(props.isProduct)
+            {
             apiClient.get(`${props.path}/${idValue.value}`,{
-                }).then(function (response){
+               }).then(function (response)
+                {
                     itemCardIF.value = true
                     item.value = response.data
                     console.log(response.data)                
-                }).catch(function (error){
+               }).catch(function (error)
+                {
                         console.log(error)
                         modalIf.value = 'failed'
                         modalTitle.value = 'Erro'
@@ -82,13 +86,16 @@ let item = ref({})
                         modalOpen.value = true
                 })
             }
-            else{
+            else
+            {
                 apiClient.get(`${props.path}/{distributor_id}?ditributor_id=${idValue.value}`,{
-                }).then(function (response){
+               }).then(function (response) 
+                {
                     itemCardIF.value = true
                     item.value = response.data
                     console.log(response.data)                
-                }).catch(function (error){
+               }).catch(function (error)
+                {
                         console.log(error)
                         modalIf.value = 'failed'
                         modalTitle.value = 'Erro'
@@ -100,14 +107,17 @@ let item = ref({})
     }
 
     // função para excluir um produto a partir do seu id
-    const deleteItem = () =>{
+    const deleteItem = () =>
+    {
         apiClient.delete(`${props.path}/${idValue.value}`,{
-            }).then(function (response){
+           }).then(function (response)
+            {
                     modalIf.value = 'success'
                     modalTitle.value = 'Sucesso'
                     modalText.value = 'Item excluido com sucesso do sistema'
                     modalOpen.value = true                
-            }).catch(function (error){
+            }).catch(function (error)
+            {
                     console.log(error)
                     modalIf.value = 'failed'
                     modalTitle.value = 'Erro'
@@ -124,7 +134,6 @@ let item = ref({})
 </script>
 
 <style scoped>
-
     section{
         display: flex;
         flex-direction: column;
@@ -137,10 +146,10 @@ let item = ref({})
         height: 30px;
         padding: 15px;
     }
+
     .p-inputtext::placeholder{
         text-align: center;
     }
-
 
     .p-button{
         width: 400px;
@@ -165,12 +174,10 @@ let item = ref({})
         height: 230px;
     }
 
-
     .title-card{
         text-align: center;
         margin-bottom: 5px;
     }
-
     @media(max-width: 500px){
         .p-card{
             width: 350px;
@@ -185,5 +192,4 @@ let item = ref({})
             width: 250px;
         }
     }
-
 </style>

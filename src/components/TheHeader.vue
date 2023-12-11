@@ -6,10 +6,6 @@
     </header>
 </template>
 
-<script setup>
-
-</script>
-
 <style scoped>
     header{
         max-width: 100%;
@@ -30,7 +26,6 @@
         color: #29332F;
     }
 
-
     .router:hover{
         color: #4F635A;
         transition: 0.75s;
@@ -39,7 +34,6 @@
     .router:focus{
         color: #30FCA0;
     }
-
     
     @media(max-width: 1050px){
         
@@ -68,5 +62,4 @@
         }
 
     }
-    
 </style>
