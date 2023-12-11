@@ -29,7 +29,7 @@
             <InputText type="text" required v-model="product.distributor_id" maxlength="36"/>
         </label>
         <br>
-        <Button label="Criar Produto" type="submit"/>
+        <Button label="Editar Produto" type="submit"/>
     </form>
 
     <form v-else-if="isDistributorForm" @submit.prevent="databaseResponse()">
@@ -44,7 +44,7 @@
         <label for="textArea"> Descrição da empresa </label>
             <TextArea id="textArea" cols="30" rows="10" v-model="distributor.description"/>
         <br>
-        <Button label="Criar distribuidor" type="submit"/>
+        <Button label="Editar distribuidor" type="submit"/>
     </form>
 
 </template>
