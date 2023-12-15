@@ -4,15 +4,18 @@ import apiClient from '../helpers/axios';
 
 vi.mock('../helpers/axios')
 
-    beforeEach(() =>{
+    beforeEach(() =>
+    {
         apiClient.get.mockReset()
         apiClient.post.mockReset()
         apiClient.put.mockReset()
         apiClient.delete.mockReset()
     })
 
-    describe('fetchProducts',() =>{
-        test('make a Get request to fetch products', async () =>{
+    describe('fetchProducts',() =>
+    {
+        test('make a Get request to fetch products', async () =>
+        {
             const productsMock = [ {id: 1}, {id: 2} ]
             
             // aqui esta sendo simulado um valor do chamado da promisse
@@ -23,25 +26,29 @@ vi.mock('../helpers/axios')
             const products = await fetchProducts()
             
             expect(apiClient.get).toHaveBeenCalledWith('products')
-            expect(products).toStrictEqual(productsMock)
-            
+            expect(products).toStrictEqual(productsMock)  
         })
     })
 
-    describe('createProducts', () =>{
-        test('make a POST request to create a new product', async () =>{
-            const newProductPayload = {
+    describe('createProducts', () =>
+    {
+        test('make a POST request to create a new product', async () =>
+        {
+            const newProductPayload = 
+            {
                 name_product: 'produto 29',
                 price: 29.99,
                 description: 'este é o produto 29',
                 distributor_id: '3935e4c3-03c4-4331-9c8f-49c61a45fdd9'
             }
 
-            const newProductMock = {
+            const newProductMock = 
+            {
                 ...newProductPayload
             }
 
-            apiClient.post.mockResolvedValue({
+            apiClient.post.mockResolvedValue(
+            {
                 data: newProductPayload
             })
 
@@ -52,17 +59,20 @@ vi.mock('../helpers/axios')
         })
     })
 
-    describe('fetch a unique product', () =>{
-        test('make a request to fetch a unique product', async () =>{
-            
-            const productMock = {
+    describe('fetch a unique product', () =>
+    {
+        test('make a request to fetch a unique product', async () =>
+        {
+            const productMock = 
+            {
                 name_product: 'produto 5',
                 price: 5.99,
                 description: 'este é o produto 5',
                 distributor_id: '356bc142-7093-4975-855f-d1bd265298c1'
             }
 
-            apiClient.get.mockResolvedValue({
+            apiClient.get.mockResolvedValue(
+            {
                 data: productMock,
             })
 
@@ -73,20 +83,25 @@ vi.mock('../helpers/axios')
         })
     })
 
-    describe('update a product', () =>{
-        test('make a put request to update a new product', async () =>{
-            const updateProductPayload = {
+    describe('update a product', () =>
+    {
+        test('make a put request to update a new product', async () =>
+        {
+            const updateProductPayload = 
+            {
                 name_product: 'produto 15',
                 price: 15.99,
                 description: 'este é o produto 15',
                 distributor_id: '356bc142-7093-4975-855f-d1bd265298c1'
             }
 
-            const updatedProductMock = {
+            const updatedProductMock = 
+            {
                ...updateProductPayload
             }
 
-            apiClient.put.mockResolvedValue({
+            apiClient.put.mockResolvedValue(
+            {
                 data: updateProductPayload
             })
 
@@ -97,16 +112,17 @@ vi.mock('../helpers/axios')
         })
     })
 
-    describe('delete a product', () =>{
-        test('make a request to delete a product', async () =>{
-
-            apiClient.delete.mockResolvedValue({
+    describe('delete a product', () =>
+    {
+        test('make a request to delete a product', async () =>
+        {
+            apiClient.delete.mockResolvedValue(
+            {
                 data: 'produto deletado com sucesso',
             })
 
             await deleteProduct()
 
             expect(apiClient.delete).toHaveBeenCalledWith('products/1f5e8a08-a27e-47f8-af59-684b1fde7cbd')
-
         })
     })

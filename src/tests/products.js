@@ -1,7 +1,5 @@
 import apiClient from "../helpers/axios";
-
 const productId = '1f5e8a08-a27e-47f8-af59-684b1fde7cbd'
-
 
 export const fetchProducts = async () =>{
     return (await apiClient.get(`products`)).data
