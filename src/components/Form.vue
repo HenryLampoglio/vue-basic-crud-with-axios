@@ -10,7 +10,7 @@
         </template>
     </BaseModal>
 
-    <label class="search-bar"><InputText type="text" :placeholder="placeHolderText" v-model="idValue" maxlength="36"/><Button @click="searchItem()" icon="pi pi-search" aria-label="Search" rounded /></label>
+    <label class="search-bar" v-if="isUpdateForm"><InputText type="text" :placeholder="placeHolderText" v-model="idValue" maxlength="36"/><Button @click="searchItem()" icon="pi pi-search" aria-label="Search" rounded /></label>
     
     <!-- form com os v-models para enviar os dados alterados ao banco de dados -->
     <form v-if="isProductForm"  @submit.prevent="databaseResponse()">
@@ -50,8 +50,8 @@
 </template>
 
 <script setup>
-import apiClient from '../../helpers/axios';
-import BaseModal from '../BaseModal.vue';
+import apiClient from '../helpers/axios';
+import BaseModal from './BaseModal.vue';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import TextArea from 'primevue/textarea';
@@ -84,10 +84,10 @@ let distributor = ref({
 
 // props passado pelo componente pai
 const props = defineProps({
-    path: String,
     isProductForm: Boolean,
     isDistributorForm: Boolean,
     placeHolderText: String,
+    isUpdateForm: Boolean,
 })
 
 // função para fechar o modal
@@ -102,7 +102,7 @@ const searchItem = () =>{
         // verifica se a requisiação foi feito por um componente da aba de distribuidor ou de produto
         if(props.isDistributorForm)
         {
-            apiClient.get(`${props.path}/{distributor_id}?ditributor_id=${idValue.value}`
+            apiClient.get(`distributors/{distributor_id}?ditributor_id=${idValue.value}`
         ).then(function (response)
         {        
                 distributor.value = response.data                
@@ -115,7 +115,7 @@ const searchItem = () =>{
             })
         }else if(props.isProductForm)
         {
-            apiClient.get(`${props.path}/${idValue.value}`
+            apiClient.get(`products/${idValue.value}`
             ).then(function (response)
             {        
                 product.value = response.data                
@@ -132,50 +132,96 @@ const searchItem = () =>{
 
 // função para enviar os dados alterados ao banco
 const databaseResponse = () =>
-{
-    if(props.isDistributorForm)
-    {
-        apiClient.put(`${props.path}/${idValue.value}`,distributor.value
-        ).then(function (response)
+{   
+    if(!props.isUpdateForm){
+        if(props.isDistributorForm)
         {
-            modalIf.value = 'success'
-            modalTitle.value = 'SUCESSO'
-            modalText.value = 'Distribuidor criado com sucesso'
-            modalOpen.value = true
-            
-            distributor.value.company_name = ''
-            distributor.value.adress = ''
-            distributor.value.description = ''
-        }).catch(function(error)
-        {
-            console.log(error)
-            modalIf.value =  'failed'
-            modalTitle.value =  'ERRO'
-            modalText.value =  'Erro ao criar um distribuidor, verifique se ja não existe no sistema'
-            modalOpen.value =  true
-        })
-    }else if(props.isProductForm)
-    {
-        apiClient.put(`${props.path}/${idValue.value}`,product.value
-        ).then(function (response)
-        {
-            modalIf.value = 'success'
-            modalTitle.value = 'SUCESSO'
-            modalText.value = 'Produto criado com sucesso'
-            modalOpen.value = true
+            apiClient.post('distributors/',distributor.value
+            ).then(function (response)
+            {
+                modalIf.value = 'success'
+                modalTitle.value = 'SUCESSO'
+                modalText.value = 'Distribuidor criado com sucesso'
+                modalOpen.value = true
 
-            product.value.name_product = ''
-            product.value.price = ''
-            product.value.description = ''
-            product.value.distributor_id = ''
-        }).catch(function(error)
+                distributor.value.company_name = ''
+                distributor.value.adress = ''
+                distributor.value.description = ''
+            }).catch(function(error)
+            {
+                console.log(error)
+                modalIf.value =  'failed'
+                modalTitle.value =  'ERRO'
+                modalText.value =  'Erro ao criar um distribuidor, verifique se ja não existe no sistema'
+                modalOpen.value =  true
+            })
+        }else if(props.isProductForm)
         {
-            modalIf.value ='failed'
-            modalTitle.value ='ERRO'
-            modalText.value = 'Erro ao criar produto, verifique se ja não existe no sistema'
-            modalOpen.value =true
-        })
+            apiClient.post('products/',product.value
+            ).then(function (response)
+            {
+                modalIf.value = 'success'
+                modalTitle.value = 'SUCESSO'
+                modalText.value = 'Produto criado com sucesso'
+                modalOpen.value = true
 
+                product.value.name_product = ''
+                product.value.price = ''
+                product.value.description = ''
+                product.value.distributor_id = ''
+            }).catch(function(error)
+            {
+                modalIf.value ='failed'
+                modalTitle.value ='ERRO'
+                modalText.value = 'Erro ao criar produto, verifique se ja não existe no sistema'
+                modalOpen.value =true
+            })
+        }
+    }    
+    if(props.isUpdateForm){
+        if(props.isDistributorForm)
+        {
+            apiClient.put(`distributors/${idValue.value}`,distributor.value
+            ).then(function (response)
+            {
+                modalIf.value = 'success'
+                modalTitle.value = 'SUCESSO'
+                modalText.value = 'Distribuidor criado com sucesso'
+                modalOpen.value = true
+                
+                distributor.value.company_name = ''
+                distributor.value.adress = ''
+                distributor.value.description = ''
+            }).catch(function(error)
+            {
+                console.log(error)
+                modalIf.value =  'failed'
+                modalTitle.value =  'ERRO'
+                modalText.value =  'Erro ao criar um distribuidor, verifique se ja não existe no sistema'
+                modalOpen.value =  true
+            })
+        }else if(props.isProductForm)
+        {
+            apiClient.put(`products/${idValue.value}`,product.value
+            ).then(function (response)
+            {
+                modalIf.value = 'success'
+                modalTitle.value = 'SUCESSO'
+                modalText.value = 'Produto criado com sucesso'
+                modalOpen.value = true
+
+                product.value.name_product = ''
+                product.value.price = ''
+                product.value.description = ''
+                product.value.distributor_id = ''
+            }).catch(function(error)
+            {
+                modalIf.value ='failed'
+                modalTitle.value ='ERRO'
+                modalText.value = 'Erro ao criar produto, verifique se ja não existe no sistema'
+                modalOpen.value =true
+            })
+        }
     }
 }
 

@@ -3,14 +3,13 @@
         <h1>Crie o distribuidor</h1>
         <br>
         <br>
-        <CreateForm
-        path="distributors" 
+        <Form
         isDistributorForm/>
     </section>
 </template>
 
 <script setup>
-import CreateForm from '../../components/forms/CreateForm.vue';
+import Form from '../../components/Form.vue';
 </script>
 
 <style scoped>

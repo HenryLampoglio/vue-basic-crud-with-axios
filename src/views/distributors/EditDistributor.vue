@@ -3,15 +3,15 @@
         <h1>Editar Distribuidor</h1>
         <br>
         <br>
-        <UpdateForm
-        path="distributors"
+        <Form
         is-distributor-form
-        place-holder-text="insira o id do distribuidor"/>
+        place-holder-text="insira o id do distribuidor"
+        is-update-form/>
     </section>
 </template>
 
 <script setup>
-import UpdateForm from '../../components/forms/UpdateForm.vue';
+import Form from '../../components/Form.vue';
 </script>
 
 <style scoped>

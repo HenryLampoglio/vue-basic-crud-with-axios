@@ -3,15 +3,16 @@
         <h1>Editar produto</h1>
         <br>
         <br>
-        <UpdateForm
+        <Form
         is-product-form
-        path="products"
-        place-holder-text="Insira o id do produto aqui"/>
+        place-holder-text="Insira o id do produto aqui"
+        is-update-form/>
     </section>
 </template>
 
 <script setup>
-import UpdateForm from '../../components/forms/UpdateForm.vue';
+import Form from '../../components/Form.vue';
+
 </script>
 
 <style scoped>

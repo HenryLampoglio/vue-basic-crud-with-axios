@@ -3,15 +3,13 @@
         <h1>Crie o produto</h1>
         <br>
         <br>
-        <CreateForm 
-        path="products"
+        <Form
         isProductForm/>
     </section>
 </template>
 
 <script setup>
-import CreateForm from '../../components/forms/CreateForm.vue';
-
+import Form from '../../components/Form.vue';
 
 </script>
 
