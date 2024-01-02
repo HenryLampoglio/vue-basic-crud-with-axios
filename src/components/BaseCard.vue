@@ -2,7 +2,7 @@
     <Card>
         <template #title> <slot name="title"/> </template>
         <template #content>
-            <p class="m-0"><slot name="content" /></p>
+            <p><slot name="content" /></p>
             <br>
             <button><slot name="text-button"/></button>
         </template>

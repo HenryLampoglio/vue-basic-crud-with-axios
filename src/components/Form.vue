@@ -10,7 +10,10 @@
         </template>
     </BaseModal>
 
-    <label class="search-bar" v-if="isUpdateForm"><InputText type="text" :placeholder="placeHolderText" v-model="idValue" maxlength="36"/><Button @click="searchItem()" icon="pi pi-search" aria-label="Search" rounded /></label>
+    <label class="search-bar" v-if="isUpdateForm">
+        <InputText type="text" :placeholder="placeHolderText" v-model="idValue" maxlength="36"/>
+        <Button @click="searchItem()" icon="pi pi-search" aria-label="Search" rounded />
+    </label>
     
     <!-- form com os v-models para enviar os dados alterados ao banco de dados -->
     <form v-if="isProductForm"  @submit.prevent="databaseResponse()">
@@ -18,17 +21,21 @@
             <InputText type="text" required v-model="product.name_product" />
         </label>
         <br>
+
         <label>Preço do produto<br> 
             <InputText type="text" required v-model="product.price" />
         </label>
         <br>
+
         <label for="textArea"> Descrição do produto </label>
             <TextArea id="textArea" cols="30" rows="10" v-model="product.description" />
         <br>
+
         <label> Código do distribuidor <br>
             <InputText type="text" required v-model="product.distributor_id" maxlength="36"/>
         </label>
         <br>
+
         <Button label="Editar Produto" type="submit"/>
     </form>
 
@@ -37,13 +44,16 @@
         <InputText type="text" required v-model="distributor.company_name" />
         </label>
         <br>
+
         <label>Endereço da empresa<br> 
         <InputText type="text" required v-model="distributor.adress" />
         </label>
         <br>
+
         <label for="textArea"> Descrição da empresa </label>
             <TextArea id="textArea" cols="30" rows="10" v-model="distributor.description"/>
         <br>
+
         <Button label="Editar distribuidor" type="submit"/>
     </form>
 
@@ -56,7 +66,6 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import TextArea from 'primevue/textarea';
 import 'primeicons/primeicons.css'
-
 import { ref } from 'vue';
 
 // variaveis do modal
@@ -65,6 +74,7 @@ let modalIf = ref('')
 let modalTitle = ref('')
 let modalText = ref('')
 
+// variavel de pesquisa do id
 let idValue = ref('')
 
 // objeto que sera alterado e enviado ao banco de dados
@@ -98,46 +108,48 @@ const onCloseModal = () =>
 }
 
 // função para receber os dados do banco para edita-los
-const searchItem = () =>{
-        // verifica se a requisiação foi feito por um componente da aba de distribuidor ou de produto
-        if(props.isDistributorForm)
+const searchItem = () =>
+{
+    // verifica se a requisiação foi feito por um componente da aba de distribuidor ou de produto
+    if(props.isDistributorForm)
+    {
+    apiClient.get(`distributors/{distributor_id}?ditributor_id=${idValue.value}`
+    ).then(function(response)
+    {        
+        distributor.value = response.data                
+    }).catch(function(error)
         {
-            apiClient.get(`distributors/{distributor_id}?ditributor_id=${idValue.value}`
-        ).then(function (response)
+            modalIf.value = 'failed'
+            modalTitle.value = 'Distribuidor não encontrado'
+            modalText.value = 'O Distribuidor não foi encontrado no sistema verifique se foi inserido o id correto'
+            modalOpen.value = true
+         })
+    }else if(props.isProductForm)
+    {
+        apiClient.get(`products/${idValue.value}`
+        ).then(function(response)
         {        
-                distributor.value = response.data                
-            }).catch(function (error)
+            product.value = response.data                
+        }).catch(function(error)
             {
-                    modalIf.value = 'failed'
-                    modalTitle.value = 'Distribuidor não encontrado'
-                    modalText.value = 'O Distribuidor não foi encontrado no sistema verifique se foi inserido o id correto'
-                    modalOpen.value = true
+                modalIf.value = 'failed'
+                modalTitle.value = 'Produto não encontrado'
+                modalText.value = 'O produto não foi encontrado no sistema verifique se foi inserido o id correto'
+                modalOpen.value = true
             })
-        }else if(props.isProductForm)
-        {
-            apiClient.get(`products/${idValue.value}`
-            ).then(function (response)
-            {        
-                product.value = response.data                
-            }).catch(function (error)
-            {
-                    modalIf.value = 'failed'
-                    modalTitle.value = 'Produto não encontrado'
-                    modalText.value = 'O produto não foi encontrado no sistema verifique se foi inserido o id correto'
-                    modalOpen.value = true
-            })
-        }
     }
+}
 
 
 // função para enviar os dados alterados ao banco
 const databaseResponse = () =>
 {   
-    if(!props.isUpdateForm){
+    if(!props.isUpdateForm)
+    {
         if(props.isDistributorForm)
         {
             apiClient.post('distributors/',distributor.value
-            ).then(function (response)
+            ).then(function(response)
             {
                 modalIf.value = 'success'
                 modalTitle.value = 'SUCESSO'
@@ -150,10 +162,10 @@ const databaseResponse = () =>
             }).catch(function(error)
             {
                 console.log(error)
-                modalIf.value =  'failed'
-                modalTitle.value =  'ERRO'
-                modalText.value =  'Erro ao criar um distribuidor, verifique se ja não existe no sistema'
-                modalOpen.value =  true
+                modalIf.value = 'failed'
+                modalTitle.value = 'ERRO'
+                modalText.value = 'Erro ao criar um distribuidor, verifique se ja não existe no sistema'
+                modalOpen.value = true
             })
         }else if(props.isProductForm)
         {
@@ -177,8 +189,8 @@ const databaseResponse = () =>
                 modalOpen.value =true
             })
         }
-    }    
-    if(props.isUpdateForm){
+    }else if(props.isUpdateForm)
+    {
         if(props.isDistributorForm)
         {
             apiClient.put(`distributors/${idValue.value}`,distributor.value
@@ -203,7 +215,7 @@ const databaseResponse = () =>
         }else if(props.isProductForm)
         {
             apiClient.put(`products/${idValue.value}`,product.value
-            ).then(function (response)
+            ).then(function(response)
             {
                 modalIf.value = 'success'
                 modalTitle.value = 'SUCESSO'
@@ -224,8 +236,6 @@ const databaseResponse = () =>
         }
     }
 }
-
-
 </script>
 
 <style scoped>

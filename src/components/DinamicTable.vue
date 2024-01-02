@@ -1,16 +1,15 @@
 <template>
     <DataTable  
-        :value="items" 
-        showGridlines
-        :sortField="field1"
-        :sortOrder="1" 
-        removableSort
-        size="small"
-        >
+    :value="items" 
+    showGridlines
+    :sortField="field1"
+    :sortOrder="1" 
+    removableSort
+    size="small">
             <Column field="id" header="Código" style="text-align: center;"></Column>
             <Column :field="field1" :header="header1" sortable style="text-align: center;"></Column>
             <Column :field="field2" :header="header2" style="text-align: center;"></Column>
-        </DataTable>
+    </DataTable>
 </template>
 
 <script setup>
@@ -30,19 +29,16 @@ defineProps({
     })
 </script>
 
-<style >
+<style>
 
 .p-datatable{
     margin-top: 50px;
     width: 95%;
 }
 
-.p-datatable .p-column-header-content{
+.p-column-header-content{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-
-
 </style>

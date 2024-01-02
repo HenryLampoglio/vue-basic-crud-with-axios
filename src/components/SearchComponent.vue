@@ -8,12 +8,12 @@
             {{ modalText }}
         </template>
     </BaseModal>  
+
     <!-- área para pesquisar ou excluir um produto determinado pelo seu id-->
     <section>
         <InputText maxlength="36" type="text" v-model="idValue" placeholder="insira o id aqui" />
         <br>
-        <Button @click="showItem()" label="mostrar"/>
-            
+        <Button @click="showItem()" label="mostrar"/>  
         <Button @click="deleteItem()" label="excluir"/>
     </section>
 
@@ -71,13 +71,12 @@ let item = ref({})
         {
             if(props.isProduct)
             {
-            apiClient.get(`${props.path}/${idValue.value}`,{
-               }).then(function (response)
+                apiClient.get(`${props.path}/${idValue.value}`,{
+                }).then(function (response)
                 {
                     itemCardIF.value = true
-                    item.value = response.data
-                    console.log(response.data)                
-               }).catch(function (error)
+                    item.value = response.data               
+                }).catch(function (error)
                 {
                         console.log(error)
                         modalIf.value = 'failed'
@@ -89,12 +88,12 @@ let item = ref({})
             else
             {
                 apiClient.get(`${props.path}/{distributor_id}?ditributor_id=${idValue.value}`,{
-               }).then(function (response) 
+                }).then(function (response) 
                 {
                     itemCardIF.value = true
                     item.value = response.data
                     console.log(response.data)                
-               }).catch(function (error)
+                }).catch(function (error)
                 {
                         console.log(error)
                         modalIf.value = 'failed'
@@ -110,20 +109,19 @@ let item = ref({})
     const deleteItem = () =>
     {
         apiClient.delete(`${props.path}/${idValue.value}`,{
-           }).then(function (response)
-            {
-                    modalIf.value = 'success'
-                    modalTitle.value = 'Sucesso'
-                    modalText.value = 'Item excluido com sucesso do sistema'
-                    modalOpen.value = true                
-            }).catch(function (error)
-            {
-                    console.log(error)
-                    modalIf.value = 'failed'
-                    modalTitle.value = 'Erro'
-                    modalText.value = 'não foi possivel excluir item do sistema'
-                    modalOpen.value = true
-            })
+        }).then(function (response)
+        {
+            modalIf.value = 'success'
+            modalTitle.value = 'Sucesso'
+            modalText.value = 'Item excluido com sucesso do sistema'
+            modalOpen.value = true                
+        }).catch(function (error)
+        {
+            modalIf.value = 'failed'
+            modalTitle.value = 'Erro'
+            modalText.value = 'não foi possivel excluir item do sistema'
+            modalOpen.value = true
+        })
     }
 
     const props = defineProps({
