@@ -4,8 +4,7 @@
         <br>
         <SearchComponent
         path="distributors"
-        is-distributor
-        />
+        is-distributor/>
         <br>
     </main>
 </template>

@@ -5,8 +5,7 @@
         <!-- você conseguiu encontrou uma solução bem mais inteligente -->
         <SearchComponent
         path="products"
-        is-product
-        />
+        is-product/>
         <br>
     </main>
 </template>
