@@ -1,75 +1,94 @@
 <template>
-    <main>
+  <main>
+    <BaseCard>
+      <template v-slot:title>Adicionar um produto</template>
+      <template v-slot:content>
+        Atalho para adicionar um novo produto ao banco de dados da empresa, você
+        pode verificar as demais funções envolvendo produtos na aba produtos
+      </template>
+      <template v-slot:text-button
+        ><router-link to="products/create" class="links"
+          >Adicionar</router-link
+        ></template
+      >
+    </BaseCard>
 
-        <BaseCard>
-            <template v-slot:title >Adicionar um produto</template>
-            <template v-slot:content>
-                Atalho para adicionar um novo produto ao banco de dados da empresa, você pode verificar as demais funções envolvendo produtos na aba produtos 
-            </template>
-            <template v-slot:text-button><router-link to="products/create" class="links">Adicionar</router-link></template>
-        </BaseCard>
+    <BaseCard>
+      <template v-slot:title>Adicionar Distribuidor</template>
+      <template v-slot:content>
+        Atalho para adicionar um novo distribuidor ao banco de dados da empresa,
+        você pode verificar as demais funções envolvendo distribuidores na aba
+        distribuidores </template
+      >Adicio
+      <template v-slot:text-button
+        ><router-link to="/distributors/create" class="links"
+          >adicionar</router-link
+        ></template
+      >
+    </BaseCard>
 
-        <BaseCard>
-            <template v-slot:title >Adicionar Distribuidor</template>
-            <template v-slot:content>
-                Atalho para adicionar um novo distribuidor ao banco de dados da empresa, você pode verificar as demais funções envolvendo distribuidores na aba distribuidores 
-            </template>Adicio
-            <template v-slot:text-button><router-link to="/distributors/create" class="links">adicionar</router-link></template>
-        </BaseCard>
-        
-        <BaseCard>
-            <template v-slot:title >Ver um produto</template>
-            <template v-slot:content>
-                Atalho para verificar um produto no banco de dados da empresa, você pode verificar as demais funções na aba produtos 
-            </template>
-        
-            <template v-slot:text-button><router-link to="products/search" class="links">Ir</router-link></template>
-        </BaseCard>
+    <BaseCard>
+      <template v-slot:title>Ver um produto</template>
+      <template v-slot:content>
+        Atalho para verificar um produto no banco de dados da empresa, você pode
+        verificar as demais funções na aba produtos
+      </template>
 
-        <BaseCard>
-            <template v-slot:title >Ver um distribuidor</template>
-            <template v-slot:content>
-                Atalho para verificar um distribuidor no banco de dados da empresa, você pode verificar as demais funções  na aba distribuidores 
-            </template>
-            <template v-slot:text-button><router-link to="distributors/search" class="links">Ir</router-link></template>
-        </BaseCard>
-        
-    </main>
+      <template v-slot:text-button
+        ><router-link to="products/search" class="links"
+          >Ir</router-link
+        ></template
+      >
+    </BaseCard>
+
+    <BaseCard>
+      <template v-slot:title>Ver um distribuidor</template>
+      <template v-slot:content>
+        Atalho para verificar um distribuidor no banco de dados da empresa, você
+        pode verificar as demais funções na aba distribuidores
+      </template>
+      <template v-slot:text-button
+        ><router-link to="distributors/search" class="links"
+          >Ir</router-link
+        ></template
+      >
+    </BaseCard>
+  </main>
 </template>
 
 <script setup>
-    import BaseCard from '../components/BaseCard.vue';
+import BaseCard from "../components/BaseCard.vue";
 </script>
 
 <style scoped>
- main{
-    min-height: calc(100vh - 80px);
-    width: 100%;
-    padding: 50px 0px;
-    display: grid;
-    grid-template-columns: 400px 400px;
-    column-gap: 80px;
+main {
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  padding: 50px 0px;
+  display: grid;
+  grid-template-columns: 400px 400px;
+  column-gap: 80px;
+  row-gap: 20px;
+  justify-content: center;
+  background-color: whitesmoke;
+}
+
+.links {
+  text-decoration: none;
+  color: black;
+}
+
+@media (max-width: 1150px) {
+  main {
+    grid-template-columns: 350px 350px;
+    column-gap: 50px;
     row-gap: 20px;
-    justify-content: center;
-    background-color: whitesmoke;
- }
+  }
+}
 
- .links{
-    text-decoration: none;
-    color: black;
- }
-
- @media(max-width: 1150px){
-    main{
-        grid-template-columns: 350px 350px;
-        column-gap: 50px;
-        row-gap: 20px;
-    }
- }
-
- @media(max-width: 760px){
-    main{
-        grid-template-columns: 350px;
-    }
- }
+@media (max-width: 760px) {
+  main {
+    grid-template-columns: 350px;
+  }
+}
 </style>
